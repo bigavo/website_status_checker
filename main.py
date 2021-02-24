@@ -1,6 +1,7 @@
 import requests
-import time, threading
 import sys
+import time
+from django.shortcuts import render_to_response
 
 def read_file():
     site_list = open("websiteList.txt", "r")
@@ -11,20 +12,29 @@ def read_file():
         response = requests.get(url_address)
         request_time = response.elapsed
         request_status = str(response.status_code)
-        check_result = response.text.lower().find(content_requirement.lower())
+        check_result = True
+        if content_requirement in response.text:
+            check_result = True
+        else:
+            check_result = False
         if check_result == True: 
-            return "Website's content requirement is fulfilled!"
+            print(page_name + ": OK")
+            print(request_time) 
         else:
             if request_status[0] == 4:
                 print("Request fail, user's error") 
             elif request_status[0] == 5:
                 print("Server is down!")
             else:
-                print(page_name + ": Website's content requirement is not fulfilled. Request time: ")
+                print(page_name + ": Error. Request time: ")
                 print(request_time) 
     site_list.close()
 
-read_file()
+def timer():
+    while True:
+        read_file()
+        time.sleep(10)
 
+timer()
 
    

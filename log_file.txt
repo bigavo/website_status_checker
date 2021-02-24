@@ -1,0 +1,4 @@
+https://www.f-secure.com/en/home/products/safe: OK. Request time: 0:00:00.088922s
+https://www.f-secure.com/en/home/products/total: OK. Request time: 0:00:00.094609s
+https://www.f-secure.com/en/home/products/freedome: OK. Request time: 0:00:00.078299s
+https://www.f-secure.com/en/home/products/id-protection: OK. Request time: 0:00:00.325083s

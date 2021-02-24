@@ -1,4 +1,4 @@
 F-secure SAFE,https://www.f-secure.com/en/home/products/safe,SAFE
 F-secure TOTAL,https://www.f-secure.com/en/home/products/total,TOTAL
 F-secure FREEDOM VPN,https://www.f-secure.com/en/home/products/freedome,FREEDOME VPN
-F-secure ID Protection,https://www.f-secure.com/en/home/products/id-protection,ID PROTECTION
+F-secure ID PROTECTION,https://www.f-secure.com/en/home/products/id-protection,ID PROTECTION

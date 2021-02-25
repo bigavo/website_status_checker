@@ -1,6 +1,8 @@
 import requests
 import sys
 import time
+import flask
+from flask import request, jsonify, render_template
 
 def check_page_status():
     site_list = open("websiteList.txt", "r")
@@ -13,14 +15,14 @@ def check_page_status():
         write_log_file(loading_text)
         response = requests.get(url_address)
         request_time = str(response.elapsed)
-        request_status = str(response.status_code)
+        response_status_code = str(response.status_code)
         check_result = (content_requirement in response.text)
         if check_result == True: 
             page_status = "OK"
         else:
-            if request_status in range(400, 499):
+            if response_status_code in range(400, 499):
                 page_status = "User's error"
-            elif request_status in range(500, 599):
+            elif response_status_code in range(500, 599):
                 page_status = "Server is down!"
 
         update_text = update_page_status(page_status, url_address)
@@ -51,11 +53,54 @@ def update_page_status(new_status, url):
     f.close()
     for line in lines:
         split_line = line.split("---")
-        if line.split("---")[0] == url:
+        if split_line[0] == url:
             split_line.pop(1)
             line = split_line[0] + "    " + new_status
     f.close()
     return line
-timer()
 
-   
+app = flask.Flask(__name__)
+app.config["DEBUG"] = True
+
+
+@app.route('/', methods=['GET'])
+def test():
+    response_info = display_response_progress()
+    url = response_info[0]
+    status = response_info[1]
+    time = response_info[2]
+    output_text = "" 
+    for i in range(len(url)):
+        line = url[i] + "----" + status[i] + "----" + time[i] + "\n"
+        output_text = output_text + line 
+    return render_template('index.html', )
+
+
+def display_response_progress():
+    site_list = open("websiteList.txt", "r")
+    url_address_list = []
+    page_status_list = []
+    request_time_list = []
+    for line in site_list:
+        url_address = line.split(",")[0]
+        content_requirement = line.split(",")[1]
+        page_status = "Waiting"
+        response = requests.get(url_address)
+        request_time = str(response.elapsed)
+        response_status_code = str(response.status_code)
+        check_result = (content_requirement in response.text)
+        if check_result == True: 
+            page_status = "OK"
+        else:
+            if response_status_code in range(400, 499):
+                page_status = "User's error"
+            elif response_status_code in range(500, 599):
+                page_status = "Server is down!"
+        url_address_list.append(url_address)
+        page_status_list.append(page_status)
+        request_time_list.append(request_time)
+        response_content = (url_address_list, page_status_list, request_time_list)
+    return response_content
+
+if __name__ == '__main__':
+    app.run()

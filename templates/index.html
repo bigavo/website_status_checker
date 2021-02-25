@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello beautiful!</title>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+        
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
+</head>
+    <body>
+        <table style="width:50%">
+            <tr>
+              <th>URL address</th>
+              <th>Status</th>
+              <th>Request time</th>
+            </tr>
+            <tr>
+              <td>{{first_url_address}}</td>
+              <td>{{first_page_status}}</td>
+              <td>{{first_request_time}}</td>
+            </tr>
+            <tr>
+                <td>{{second_url_address}}</td>
+                <td>{{second_page_status}}</td>
+                <td>{{request_time}}</td>
+              </tr>
+              <tr>
+                <td>{{third_url_address}}</td>
+                <td>{{third_page_status}}</td>
+                <td>{{third_request_time}}</td>
+              </tr>
+          </table>
+    <body>
+</body>
+</html>

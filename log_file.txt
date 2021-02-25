@@ -1,4 +1,1 @@
-https://www.f-secure.com/en/home/products/safe    OK     0:00:00.174845s
-https://www.f-secure.com/en/home/products/total    OK     0:00:00.121340s
-https://www.f-secure.com/en/home/products/freedome    OK     0:00:00.156829s
-https://www.f-secure.com/en/home/products/id-protection    OK     0:00:00.291920s
+https://www.f-secure.com/en/home/products/id-protection---Waiting---

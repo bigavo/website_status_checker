@@ -23,26 +23,18 @@
     <body>
         <table style="width:50%">
             <tr>
-              <th>URL address</th>
-              <th>Status</th>
-              <th>Request time</th>
+                {% for header in headings%}
+                <td>{{header}}</td>
+                {% endfor %}
             </tr>
-            <tr>
-              <td>{{first_url_address}}</td>
-              <td>{{first_page_status}}</td>
-              <td>{{first_request_time}}</td>
-            </tr>
-            <tr>
-                <td>{{second_url_address}}</td>
-                <td>{{second_page_status}}</td>
-                <td>{{request_time}}</td>
-              </tr>
-              <tr>
-                <td>{{third_url_address}}</td>
-                <td>{{third_page_status}}</td>
-                <td>{{third_request_time}}</td>
-              </tr>
-          </table>
+
+            {% for row in data %}
+                <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>    
+                {% endfor %}
+                </tr>
+            {% endfor %}
     <body>
 </body>
 </html>

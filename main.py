@@ -59,47 +59,58 @@ from flask import request, jsonify, render_template
 #     f.close()
 #     return line
 
-app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+# app = flask.Flask(__name__)
+# app.config["DEBUG"] = True
 
 
-@app.route('/', methods=['GET'])
-def test():
-    response_info = display_response_progress()
-    headings = ("URL address", "Page status", "Request time")
-    data = (
-        ("https://www.f-secure.com/en/home/products/safe", (response_info[1])[0], (response_info[2])[0]),
-        ("https://www.f-secure.com/en/home/products/total", (response_info[1])[1], (response_info[2])[1]),
-        ("https://www.f-secure.com/en/home/products/freedome", (response_info[1])[2], (response_info[2])[2]),
-        ("https://www.f-secure.com/en/home/products/id-protection", (response_info[1])[3], (response_info[2])[3])
-    )
-    return render_template('index.html', headings = headings, data = data)
+# @app.route('/', methods=['GET'])
+
+# def render_info_test():
+#     headings = ("URL address", "Page status", "Request time")
+#     a = 6+4
+#     b ="Hello"
+#     c = 123
+#     data = [
+#         (a,b,c),
+#         (a,b,c),
+#         (a,b,c)
+#     ]
+#     return render_template('index.html', headings = headings, data = data)
+
+# def render_info(status_result):
+#     headings = ("URL address", "Page status", "Request time")
+#     data = status_result
+#     return render_template('index.html', headings = headings, data = data)
 
 
 def display_response_progress():
     site_list = open("websiteList.txt", "r")
-    url_address_list = []
-    page_status_list = []
-    request_time_list = []
+    page_status_data_list = []
     for line in site_list:
         url_address = line.split(",")[0]
-        content_requirement = line.split(",")[1]
-        page_status = "Waiting"
+        content_requirement = line.split(",")[1].replace("\n",'')
+        request_status = "Waiting"
+        response_time = " "
+        status_result = (url_address, request_status, response_time)
+        page_status_data_list.append(status_result)
+        # render_info(page_status_data_list)
         response = requests.get(url_address)
-        request_time = str(response.elapsed)
+        response_time = str(response.elapsed)
         response_status_code = str(response.status_code)
         check_result = (content_requirement in response.text)
+
         if check_result == True: 
-            page_status = "OK"
+            request_status = "OK"
         else:
             if response_status_code in range(400, 499):
-                page_status = "User's error"
+                request_status = "User's error"
             elif response_status_code in range(500, 599):
-                page_status = "Server is down!"
-        url_address_list.append(url_address)
-        page_status_list.append(page_status)
-        request_time_list.append(request_time)
-        response_content = (url_address_list, page_status_list, request_time_list)
-    return response_content
-if __name__ == '__main__':
-    app.run()
+                request_status = "Server is down!"
+        new_status_result = (url_address, request_status, response_time)
+        page_status_data_list.pop()
+        page_status_data_list.append(new_status_result)
+        # render_info(page_status_data_list)
+    site_list.close()
+# if __name__ == '__main__':
+#     app.run()
+display_response_progress()

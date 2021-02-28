@@ -32,20 +32,25 @@ def check_page_status():
         request_time = str(response.elapsed)
         response_status_code = str(response.status_code)
         check_result = (content_requirement in response.text)
-        if check_result == True: 
-            page_status = "OK"
-        else:
-            if response_status_code in range(400, 499):
-                page_status = "User's error"
-            elif response_status_code in range(500, 599):
-                page_status = "Server is down!"
-            else:
-                page_status = "Page content requirement is not met"
+        page_status = check_status_code(check_result, response_status_code)
         update_text = update_page_status(page_status, url_address)
         output = output + update_text + "     " + request_time + "s" + "\n"
         write_log_file(output)
     site_list.close()
     return output
+    
+
+def check_status_code(check_result, response_status_code):
+    if check_result == True: 
+            page_status = "OK"
+    else:
+        if response_status_code in range(400, 499):
+            page_status = "User's error"
+        elif response_status_code in range(500, 599):
+            page_status = "Server is down!"
+        else:
+            page_status = "Page content requirement is not met"
+    return page_status
 
 
 def timer():

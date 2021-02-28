@@ -1,40 +1,26 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>Hello beautiful!</title>
-    <style>
-        table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        }
-        
-        td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        }
-        
-        tr:nth-child(even) {
-        background-color: #dddddd;
-        }
-    </style>
-</head>
+    <head>
+        <title> F=secure operator gtn</title>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+        <script type="text/javascript" charset="utf-8"></script>
+    </head>
     <body>
-        <table style="width:50%">
-            <tr>
-                {% for header in headings%}
-                <td>{{header}}</td>
-                {% endfor %}
-            </tr>
-
-            {% for row in data %}
+        <div>
+            <table style="width:50%">
                 <tr>
-                {% for cell in row %}
-                <td>{{ cell }}</td>    
-                {% endfor %}
+                    {% for header in headings%}
+                    <td>{{header}}</td>
+                    {% endfor %}
                 </tr>
-            {% endfor %}
-    <body>
-</body>
+    
+                {% for row in data %}
+                    <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>    
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+    </div>
+    </body>
+
 </html>

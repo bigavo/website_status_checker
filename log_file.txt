@@ -1,5 +1,5 @@
-https://www.f-secure.com/en/home/products/safe    OK     0:00:00.077883s
-https://www.f-secure.com/en/home/products/total    OK     0:00:00.075269s
-https://www.f-secure.com/en/home/products/freedome    OK     0:00:00.078453s
-https://www.f-secure.com/en/home/products/id-protection    OK     0:00:00.076828s
-https://www.f-secure.com/en/investors/materials    Page content requirement is not met     0:00:00.057501s
+https://www.f-secure.com/en/home/products/safe    OK     0:00:00.298248s
+https://www.f-secure.com/en/home/products/total    OK     0:00:00.184647s
+https://www.f-secure.com/en/home/products/freedome    OK     0:00:00.365194s
+https://www.f-secure.com/en/home/products/id-protection    OK     0:00:00.249891s
+https://www.f-secure.com/en/investors/materials    Page content requirement is not met     0:00:00.176509s

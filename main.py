@@ -24,7 +24,7 @@ def check_page_status():
     output = ""
     for line in site_list:
         url_address = line.split(",")[0]
-        content_requirement = line.split(",")[1]
+        content_requirement = line.split(",")[1].replace('\n', '')
         page_status = "Waiting"
         loading_text = output + url_address + "---" + page_status + "---"
         write_log_file(loading_text)
@@ -39,6 +39,8 @@ def check_page_status():
                 page_status = "User's error"
             elif response_status_code in range(500, 599):
                 page_status = "Server is down!"
+            else:
+                page_status = "Page content requirement is not met"
         update_text = update_page_status(page_status, url_address)
         output = output + update_text + "     " + request_time + "s" + "\n"
         write_log_file(output)

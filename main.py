@@ -1,9 +1,6 @@
 import requests
 import sys
 import time
-import flask
-from flask import request, jsonify, render_template
-
 
 def update_page_status(new_status, url, request_time):
     f = open("log_file.txt", "r+")

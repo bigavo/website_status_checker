@@ -1,6 +1,6 @@
 ## Table of contents
 * [General info](#general-info)
-* [Work flow](#work flow)
+
 
 ## General info
 This is a Python program that read lists of Http URLs and corresponding requirements from a configuration file(websiteList.txt) then verify if it fulfills a defined requirement. Progress of the request as well as its reponse time is displayed into a log file name log_file.txt
